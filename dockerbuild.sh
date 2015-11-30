@@ -5,6 +5,7 @@ rm -rf ./dist
 
 echo Building app
 grunt
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 cp ./Dockerfile ./dist/
 
@@ -13,5 +14,6 @@ npm install --production
 
 echo Building docker image
 docker build -t ggjonsson/tictactoe .
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo "Done"
