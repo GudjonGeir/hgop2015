@@ -86,5 +86,9 @@ describe('join game command', () => {
 				timeStamp: '2015.01.01T10:01:00'
 			}
 		];
+
+		var actual = tictactoeCommandHandler(given).executeCommand(when);
+
+		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
 	});
 });
