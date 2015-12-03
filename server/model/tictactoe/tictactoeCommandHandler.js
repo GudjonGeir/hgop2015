@@ -77,17 +77,30 @@ module.exports = function tictactoeCommandHandler(events) {
 		MakeMove : function MakeMove(command) {
 			// Check if it's the players turn
 			const playersMark = command.playerName === gameState.playerOne ? 'X' : 'O';
-			console.log('playersMark:', playersMark, 'nextMark:', gameState.nextMark);
 			if (playersMark === gameState.nextMark) {
-				return [
-					{
-						event      : 'MoveMade',
-						playerName : command.playerName,
-						row        : command.row,
-						col        : command.col,
-						timeStamp  : command.timeStamp
-					}
-				];
+				if (gameState.board[command.col][command.row] === '') {
+					gameState.board[command.col][command.row] = playersMark;
+					return [
+						{
+							event      : 'MoveMade',
+							playerName : command.playerName,
+							col        : command.col,
+							row        : command.row,
+							timeStamp  : command.timeStamp
+						}
+					];
+				} else {
+					return [
+						{
+							event      : 'TileOccupied',
+							playerName : command.playerName,
+							col        : command.col,
+							row        : command.row,
+							timeStamp  : command.timeStamp
+						}
+					]
+				}
+
 			} else {
 				return [
 					{

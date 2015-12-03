@@ -26,23 +26,20 @@ describe('make move command', () => {
 
 	describe('first moves', () => {
 
-
-
-
 		it('should allow player one to make first move', () => {
 			when = {
 				cmd        : 'MakeMove',
 				playerName : 'Player1',
-				row        : 0,
 				col        : 0,
+				row        : 0,
 				timeStamp  : '2015.01.01T10:02:00'
 			};
 			then = [
 				{
 					event      : 'MoveMade',
 					playerName : 'Player1',
-					row        : 0,
 					col        : 0,
+					row        : 0,
 					timeStamp  : '2015.01.01T10:02:00'
 				}
 			];
@@ -56,23 +53,23 @@ describe('make move command', () => {
 			given.push({
 				event      : 'MoveMade',
 				playerName : 'Player1',
-				row        : 0,
 				col        : 0,
+				row        : 0,
 				timeStamp  : '2015.01.01T10:02:00'
 			});
 			when = {
 				cmd        : 'MakeMove',
 				playerName : 'Player2',
+				col        : 1,
 				row        : 1,
-				col        : 0,
 				timeStamp  : '2015.01.01T10:03:00'
 			}
 			then = [
 				{
 					event      : 'MoveMade',
 					playerName : 'Player2',
+					col        : 1,
 					row        : 1,
-					col        : 0,
 					timeStamp  : '2015.01.01T10:03:00'
 				}
 			];
@@ -89,8 +86,8 @@ describe('make move command', () => {
 			when = {
 				cmd        : 'MakeMove',
 				playerName : 'Player2',
-				row        : 0,
-				col        : 0,
+				col        : 2,
+				row        : 1,
 				timeStamp  : '2015.01.01T10:02:00'
 			};
 			then = [
@@ -98,6 +95,36 @@ describe('make move command', () => {
 					event      : 'NotPlayersTurn',
 					playerName : 'Player2',
 					timeStamp  : '2015.01.01T10:02:00'
+				}
+			];
+
+			var actual = tictactoeCommandHandler(given).executeCommand(when);
+
+			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+		});
+
+		it('should not allow players to place a mark on an occupied tile', () => {
+			given.push({
+				event      : 'MoveMade',
+				playerName : 'Player1',
+				col        : 2,
+				row        : 1,
+				timeStamp  : '2015.01.01T10:04:00'
+			});
+			when = {
+				cmd        : 'MakeMove',
+				playerName : 'Player2',
+				col        : 2,
+				row        : 1,
+				timeStamp  : '2015.01.01T10:05:00'
+			}
+			then = [
+				{
+					event      : 'TileOccupied',
+					playerName : 'Player2',
+					col        : 2,
+					row        : 1,
+					timeStamp  : '2015.01.01T10:05:00'
 				}
 			];
 
