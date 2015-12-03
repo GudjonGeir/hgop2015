@@ -9,6 +9,17 @@ module.exports = function tictactoeCommandHandler(events) {
 		nextMark  : 'X'
 	};
 
+	function checkForWin() {
+		for (var i = 0; i < 3; i++) {
+			if (gameState.board[i][0] === gameState.board[i][1] &&
+				gameState.board[i][1] === gameState.board[i][2] &&
+				gameState.board[i][0] !== '') {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	// Handles previous events, i.e. given events.
 	// Updates the game state to the current state.
 	const eventHandlers = {
@@ -78,29 +89,29 @@ module.exports = function tictactoeCommandHandler(events) {
 			// Check if it's the players turn
 			const playersMark = command.playerName === gameState.playerOne ? 'X' : 'O';
 			if (playersMark === gameState.nextMark) {
+				var retEvent = {
+					event      : '',
+					playerName : command.playerName,
+					col        : command.col,
+					row        : command.row,
+					timeStamp  : command.timeStamp
+				};
 				if (gameState.board[command.col][command.row] === '') {
 					gameState.board[command.col][command.row] = playersMark;
-					return [
-						{
-							event      : 'MoveMade',
-							playerName : command.playerName,
-							col        : command.col,
-							row        : command.row,
-							timeStamp  : command.timeStamp
-						}
-					];
+					if (checkForWin()) {
+						return [
+							{
+								event      : 'GameOver',
+								winnerName : command.playerName,
+								timeStamp  : command.timeStamp
+							}
+						];
+					}
+					retEvent.event = 'MoveMade';
 				} else {
-					return [
-						{
-							event      : 'TileOccupied',
-							playerName : command.playerName,
-							col        : command.col,
-							row        : command.row,
-							timeStamp  : command.timeStamp
-						}
-					]
+					retEvent.event = 'TileOccupied';
 				}
-
+				return [ retEvent ];
 			} else {
 				return [
 					{
