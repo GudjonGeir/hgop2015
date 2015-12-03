@@ -10,40 +10,70 @@ describe('make move command', () => {
 	beforeEach(() => {
 		given = [
 			{
-				event     : 'GameCreated',
-				gameName  : 'game1',
-				userName  : 'User1',
-				timeStamp : '2015.01.01T10:00:00'
+				event      : 'GameCreated',
+				gameName   : 'game1',
+				playerName : 'Player1',
+				timeStamp  : '2015.01.01T10:00:00'
 			},
 			{
-				event     : 'GameJoined',
-				gameName  : 'game1',
-				userName  : 'User2',
-				timeStamp : '2015.01.01T10:01:00'
+				event      : 'GameJoined',
+				gameName   : 'game1',
+				playerName : 'Player2',
+				timeStamp  : '2015.01.01T10:01:00'
 			}
 		];
 	});
 
 	it('should allow player one to make first move', () => {
 		when = {
-			cmd       : 'MakeMove',
-			userName  : 'User1',
-			row       : 0,
-			col       : 0,
-			timeStamp : '2015.01.01T10:01:00'
+			cmd        : 'MakeMove',
+			playerName : 'Player1',
+			row        : 0,
+			col        : 0,
+			timeStamp  : '2015.01.01T10:02:00'
 		};
 		then = [
 			{
-				event     : 'MoveMade',
-				userName  : 'User1',
-				row       : 0,
-				col       : 0,
-				timeStamp : '2015.01.01T10:01:00'
+				event      : 'MoveMade',
+				playerName : 'Player1',
+				row        : 0,
+				col        : 0,
+				timeStamp  : '2015.01.01T10:02:00'
 			}
 		];
 
 		var actual = tictactoeCommandHandler(given).executeCommand(when);
 
 		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
-	})
+	});
+
+	it('should allow player two to make the second move', () => {
+		given.push({
+			event      : 'MoveMade',
+			playerName : 'Player1',
+			row        : 0,
+			col        : 0,
+			timeStamp  : '2015.01.01T10:02:00'
+		});
+		when = {
+			cmd        : 'MakeMove',
+			playerName : 'Player2',
+			row        : 1,
+			col        : 0,
+			timeStamp  : '2015.01.01T10:03:00'
+		}
+		then = [
+			{
+				event      : 'MoveMade',
+				playerName : 'Player2',
+				row        : 1,
+				col        : 0,
+				timeStamp  : '2015.01.01T10:03:00'
+			}
+		];
+
+		var actual = tictactoeCommandHandler(given).executeCommand(when);
+
+		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+	});
 })

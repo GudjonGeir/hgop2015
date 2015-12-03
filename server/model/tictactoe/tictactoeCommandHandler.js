@@ -1,12 +1,20 @@
 module.exports = function tictactoeCommandHandler(events) {
+
+	var gameState = {
+		board     : [['','',''],['','',''],['','','']],
+		playerOne : null,
+		playerTwo : null
+	};
+
 	const commandHandlers = {
+
 		CreateGame : function CreateGame(command) {
 			return [
 				{
-					event     : 'GameCreated',
-					gameName  : command.gameName,
-					userName  : command.userName,
-					timeStamp : command.timeStamp
+					event      : 'GameCreated',
+					gameName   : command.gameName,
+					playerName : command.playerName,
+					timeStamp  : command.timeStamp
 				}
 			];
 		},
@@ -15,19 +23,19 @@ module.exports = function tictactoeCommandHandler(events) {
 				if (events[1] !== undefined) {
 					return [
 						{
-							event    : 'GameFull',
-							gameName : command.gameName,
-							timeStamp: command.timeStamp
+							event     : 'GameFull',
+							gameName  : command.gameName,
+							timeStamp : command.timeStamp
 						}
 					]
 				}
 				return [
 					events[0],
 					{
-						event     : 'GameJoined',
-						gameName  : command.gameName,
-						userName  : command.userName,
-						timeStamp : command.timeStamp
+						event      : 'GameJoined',
+						gameName   : command.gameName,
+						playerName : command.playerName,
+						timeStamp  : command.timeStamp
 					}
 				];
 			} else {
@@ -43,11 +51,11 @@ module.exports = function tictactoeCommandHandler(events) {
 		MakeMove : function MakeMove(command) {
 			return [
 				{
-					event     : 'MoveMade',
-					userName  : 'User1',
-					row       : 0,
-					col       : 0,
-					timeStamp : '2015.01.01T10:01:00'
+					event      : 'MoveMade',
+					playerName : command.playerName,
+					row        : command.row,
+					col        : command.col,
+					timeStamp  : command.timeStamp
 				}
 			];
 		}
