@@ -12,13 +12,14 @@ describe('create game command', () => {
 		given = [];
 		when = {
 			cmd       : 'CreateGame',
-			userName  : 'User1',
 			gameName  : 'game1',
+			userName  : 'User1',
 			timeStamp : '2015.01.01T10:00:00'
 		};
 		then = [
 			{
 				event     : 'GameCreated',
+				gameName  : 'game1',
 				userName  : 'User1',
 				timeStamp : '2015.01.01T10:00:00'
 			}
@@ -39,13 +40,14 @@ describe('create game command', () => {
 		];
 		when = {
 			cmd       : 'CreateGame',
-			userName  : 'User2',
 			gameName  : 'game2',
+			userName  : 'User2',
 			timeStamp : '2015.01.01T11:00:00'
 		};
 		then = [
 			{
 				event     : 'GameCreated',
+				gameName  : 'game2',
 				userName  : 'User2',
 				timeStamp : '2015.01.01T11:00:00'
 			}
@@ -54,5 +56,5 @@ describe('create game command', () => {
 		var actual = tictactoeCommandHandler(given).executeCommand(when);
 
 		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
-	})
+	});
 });
