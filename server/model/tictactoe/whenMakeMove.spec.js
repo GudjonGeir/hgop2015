@@ -24,56 +24,86 @@ describe('make move command', () => {
 		];
 	});
 
-	it('should allow player one to make first move', () => {
-		when = {
-			cmd        : 'MakeMove',
-			playerName : 'Player1',
-			row        : 0,
-			col        : 0,
-			timeStamp  : '2015.01.01T10:02:00'
-		};
-		then = [
-			{
+	describe('first moves', () => {
+
+
+
+
+		it('should allow player one to make first move', () => {
+			when = {
+				cmd        : 'MakeMove',
+				playerName : 'Player1',
+				row        : 0,
+				col        : 0,
+				timeStamp  : '2015.01.01T10:02:00'
+			};
+			then = [
+				{
+					event      : 'MoveMade',
+					playerName : 'Player1',
+					row        : 0,
+					col        : 0,
+					timeStamp  : '2015.01.01T10:02:00'
+				}
+			];
+
+			var actual = tictactoeCommandHandler(given).executeCommand(when);
+
+			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+		});
+
+		it('should allow player two to make the second move', () => {
+			given.push({
 				event      : 'MoveMade',
 				playerName : 'Player1',
 				row        : 0,
 				col        : 0,
 				timeStamp  : '2015.01.01T10:02:00'
-			}
-		];
-
-		var actual = tictactoeCommandHandler(given).executeCommand(when);
-
-		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
-	});
-
-	it('should allow player two to make the second move', () => {
-		given.push({
-			event      : 'MoveMade',
-			playerName : 'Player1',
-			row        : 0,
-			col        : 0,
-			timeStamp  : '2015.01.01T10:02:00'
-		});
-		when = {
-			cmd        : 'MakeMove',
-			playerName : 'Player2',
-			row        : 1,
-			col        : 0,
-			timeStamp  : '2015.01.01T10:03:00'
-		}
-		then = [
-			{
-				event      : 'MoveMade',
+			});
+			when = {
+				cmd        : 'MakeMove',
 				playerName : 'Player2',
 				row        : 1,
 				col        : 0,
 				timeStamp  : '2015.01.01T10:03:00'
 			}
-		];
+			then = [
+				{
+					event      : 'MoveMade',
+					playerName : 'Player2',
+					row        : 1,
+					col        : 0,
+					timeStamp  : '2015.01.01T10:03:00'
+				}
+			];
 
-		var actual = tictactoeCommandHandler(given).executeCommand(when);
+			var actual = tictactoeCommandHandler(given).executeCommand(when);
 
-		JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+		});
 	});
-})
+
+	describe('illegal moves', () => {
+		it('should not allow players to make a move when it\'s not their turn', () =>{
+
+			when = {
+				cmd        : 'MakeMove',
+				playerName : 'Player2',
+				row        : 0,
+				col        : 0,
+				timeStamp  : '2015.01.01T10:02:00'
+			};
+			then = [
+				{
+					event      : 'NotPlayersTurn',
+					playerName : 'Player2',
+					timeStamp  : '2015.01.01T10:02:00'
+				}
+			];
+
+			var actual = tictactoeCommandHandler(given).executeCommand(when);
+
+			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
+		});
+	})
+});
