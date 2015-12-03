@@ -2,7 +2,7 @@
 ### Game creation/joining a game
 Player creates a game
 
-* Given []
+* Given [ ]
 * When [ CreateGame(gameName, user1) ]
 * Then [ GameCreated(gameName, user1) ]
 
@@ -17,6 +17,12 @@ Player joins a game with two players
 * Given [ GameCreated(gameName, user1), GameJoined(gamename, user2) ]
 * When [ JoinGame(gameName, user3) ]
 * Then [ GameFull(gameName) ]
+
+Player joins a nonexisting game
+
+* Given [ ]
+* When [ JoinGame(gameName, user1) ]
+* Then [ NonExistingGame(gameName) ]
 
 ###Illegal moves
 Player makes a move when it's not his turn
