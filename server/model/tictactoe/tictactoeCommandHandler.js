@@ -6,7 +6,8 @@ module.exports = function tictactoeCommandHandler(events) {
 		board     : [['','',''],['','',''],['','','']],
 		playerOne : null,
 		playerTwo : null,
-		nextMark  : 'X'
+		nextMark  : 'X',
+		movesMade : 0
 	};
 
 	function checkForWin() {
@@ -47,6 +48,7 @@ module.exports = function tictactoeCommandHandler(events) {
 		MoveMade: function MakeMove(event) {
 			gameState.board[event.col][[event.row]] = gameState.nextMark;
 			gameState.nextMark = gameState.nextMark === 'X' ? 'O' : 'X';
+			gameState.movesMade++;
 		}
 	};
 
@@ -122,6 +124,16 @@ module.exports = function tictactoeCommandHandler(events) {
 							}
 						];
 					}
+					console.log(gameState.movesMade);
+					if (gameState.movesMade === 9) {
+						return [
+							{
+								event     : 'Draw',
+								timeStamp : command.timeStamp
+							}
+						];
+					}
+
 					retEvent.event = 'MoveMade';
 				} else {
 					retEvent.event = 'TileOccupied';
