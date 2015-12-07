@@ -22,6 +22,16 @@ module.exports = function tictactoeCommandHandler(events) {
 				return true;
 			}
 		}
+		if (gameState.board[0][0] === gameState.board[1][1] &&
+			gameState.board[1][1] === gameState.board[2][2] &&
+			gameState.board[0][0] !== '') {
+			return true;
+		}
+		if (gameState.board[2][0] === gameState.board[1][1] &&
+			gameState.board[1][1] === gameState.board[0][2] &&
+			gameState.board[2][0] !== '') {
+			return true;
+		}
 		return false;
 	}
 
