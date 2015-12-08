@@ -11,6 +11,7 @@ cp ./Dockerfile ./dist/
 
 cd dist
 npm install --production
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo Building docker image
 docker build -t ggjonsson/tictactoe .
