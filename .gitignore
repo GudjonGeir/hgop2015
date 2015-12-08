@@ -7,4 +7,5 @@ dist
 /server/config/local.env.js
 
 junitResults/
-server-tests.xml
+server-tests
+acceptance-tests

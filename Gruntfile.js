@@ -1,8 +1,6 @@
 // Generated on 2014-11-25 using generator-angular-fullstack 2.0.13
 'use strict';
 
-console.log("process.env.MOCHA_REPORTER", process.env.MOCHA_REPORTER);
-
 module.exports = function (grunt) {
   var localConfig;
   try {
@@ -73,7 +71,7 @@ module.exports = function (grunt) {
       },
       mochaTest: {
         files: ['server/**/*.js'],
-        tasks: ['env:test', 'mochaTest']
+        tasks: ['env:test', 'mochaTest:test']
       },
       jsTest: {
         files: [
@@ -132,6 +130,7 @@ module.exports = function (grunt) {
         },
         src: [
           'server/**/*.js',
+          '!server/**/*.acceptance.js',
           '!server/**/*.spec.js'
         ]
       },
@@ -436,11 +435,20 @@ module.exports = function (grunt) {
     },
 
     mochaTest: {
+      test:{
       options: {
         reporter: process.env.MOCHA_REPORTER || 'spec',
-        captureFile:'server-tests.xml'
+        captureFile:'server-tests'
       },
       src: ['server/**/*.spec.js']
+      },
+       acceptance: {
+        options: {
+          reporter: process.env.MOCHA_REPORTER || 'spec',
+          captureFile:'acceptance-tests'
+        },
+        src: ['server/**/*.acceptance.js']
+      }
     },
     protractor: {
       options: {
@@ -603,10 +611,16 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'env:all',
         'env:test',
-        'mochaTest'
+        'mochaTest:test'
       ]);
     }
-
+    else if (target === 'acceptance') {
+      return grunt.task.run([
+        'env:all',
+        'env:test',
+        'mochaTest:acceptance'
+      ]);
+    }
     else if (target === 'client') {
       return grunt.task.run([
         'clean:server',
@@ -661,7 +675,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
+    'test:server',
+    'test:client',
     'build'
   ]);
 };
