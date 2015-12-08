@@ -115,6 +115,7 @@ module.exports = function tictactoeCommandHandler(events) {
 				};
 				if (gameState.board[command.col][command.row] === '') {
 					gameState.board[command.col][command.row] = playersMark;
+					gameState.movesMade++;
 					if (checkForWin()) {
 						return [
 							{

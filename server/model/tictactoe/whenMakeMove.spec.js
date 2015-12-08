@@ -290,7 +290,9 @@ describe('make move command', () => {
 
 			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
 		});
+	});
 
+	describe('draw moves', () => {
 		it('should anounce a draw if all tiles are full with no winner', () => {
 			/*
 			* Given[ Placed(0, 0, X), Placed(0, 1, O), Placed(0, 2, X), Placed(1, 1, O),
@@ -374,5 +376,5 @@ describe('make move command', () => {
 
 			JSON.stringify(actual).should.be.exactly(JSON.stringify(then));
 		});
-	})
+	});
 });
