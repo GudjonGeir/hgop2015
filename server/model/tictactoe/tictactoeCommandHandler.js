@@ -124,7 +124,6 @@ module.exports = function tictactoeCommandHandler(events) {
 							}
 						];
 					}
-					console.log(gameState.movesMade);
 					if (gameState.movesMade === 9) {
 						return [
 							{
