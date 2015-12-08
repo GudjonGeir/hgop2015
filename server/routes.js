@@ -18,7 +18,7 @@ module.exports = function(app, config) {
 	app.use('/api/gameHistory', require('./api/gameHistory')(eventStore).router);
 
 	app.use('/api/joinGame', require('./api/joinGame')(eventStore).router);
-	app.use('/api/placeMove', require('./api/placeMove')(eventStore).router);
+	app.use('/api/makeMove', require('./api/makeMove')(eventStore).router);
 	app.use('/api/createGame', require('./api/createGame')(eventStore).router);
 
 	// All undefined asset or api routes should return a 404
