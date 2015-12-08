@@ -8,12 +8,11 @@ describe('GET /api/gameHistory', function () {
 
 	it('should respond with JSON array with created events for game', function (done) {
 		var command = {
-			id : "1234",
-			gameId : "999",
-			comm: "CreateGame",
-			userName: "Gulli",
-			name: "TheFirstGame",
-			timeStamp: "2014-12-02T11:29:29"
+			cmd        : 'CreateGame',
+			gameId     : 999,
+			gameName   : 'TheFirstGame',
+			playerName : 'Gulli',
+			timeStamp  : '2015.01.01T10:00:00'
 		};
 
 		var req = request(app);
@@ -32,12 +31,11 @@ describe('GET /api/gameHistory', function () {
 				res.body.should.be.instanceof(Array);
 				should(res.body).eql(
 					[{
-						"id": "1234",
-						"gameId": "999",
-						"event": "GameCreated",
-						"userName": "Gulli",
-						"name": "TheFirstGame",
-						"timeStamp": "2014-12-02T11:29:29"
+						event      : 'GameCreated',
+						gameId     : 999,
+						gameName   : 'TheFirstGame',
+						playerName : 'Gulli',
+						timeStamp  : '2015.01.01T10:00:00'
 					}]);
 					done();
 				});
