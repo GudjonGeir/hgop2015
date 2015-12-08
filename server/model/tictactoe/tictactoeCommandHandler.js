@@ -66,6 +66,7 @@ module.exports = function tictactoeCommandHandler(events) {
 			return [
 				{
 					event      : 'GameCreated',
+					gameId     : command.gameId,
 					gameName   : command.gameName,
 					playerName : command.playerName,
 					timeStamp  : command.timeStamp
@@ -78,6 +79,7 @@ module.exports = function tictactoeCommandHandler(events) {
 					return [
 						{
 							event     : 'GameFull',
+							gameId    : command.gameId,
 							gameName  : command.gameName,
 							timeStamp : command.timeStamp
 						}
@@ -87,6 +89,7 @@ module.exports = function tictactoeCommandHandler(events) {
 					events[0],
 					{
 						event      : 'GameJoined',
+						gameId     : command.gameId,
 						gameName   : command.gameName,
 						playerName : command.playerName,
 						timeStamp  : command.timeStamp
@@ -96,6 +99,7 @@ module.exports = function tictactoeCommandHandler(events) {
 				return [
 					{
 						event     : 'NonExistingGame',
+						gameId    : command.gameId,
 						gameName  : command.gameName,
 						timeStamp : command.timeStamp
 					}
@@ -108,6 +112,7 @@ module.exports = function tictactoeCommandHandler(events) {
 			if (playersMark === gameState.nextMark) {
 				var retEvent = {
 					event      : '',
+					gameId     : command.gameId,
 					playerName : command.playerName,
 					col        : command.col,
 					row        : command.row,
@@ -120,6 +125,7 @@ module.exports = function tictactoeCommandHandler(events) {
 						return [
 							{
 								event      : 'GameOver',
+								gameId     : command.gameId,
 								winnerName : command.playerName,
 								timeStamp  : command.timeStamp
 							}
@@ -129,6 +135,7 @@ module.exports = function tictactoeCommandHandler(events) {
 						return [
 							{
 								event     : 'Draw',
+								gameId    : command.gameId,
 								timeStamp : command.timeStamp
 							}
 						];
@@ -143,6 +150,7 @@ module.exports = function tictactoeCommandHandler(events) {
 				return [
 					{
 						event      : 'NotPlayersTurn',
+						gameId     : command.gameId,
 						playerName : command.playerName,
 						timeStamp  : command.timeStamp
 					}

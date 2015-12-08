@@ -12,6 +12,7 @@ describe('create game command', () => {
 		given = [];
 		when = {
 			cmd        : 'CreateGame',
+			gameId     : 1,
 			gameName   : 'game1',
 			playerName : 'Player1',
 			timeStamp  : '2015.01.01T10:00:00'
@@ -19,6 +20,7 @@ describe('create game command', () => {
 		then = [
 			{
 				event      : 'GameCreated',
+				gameId     : 1,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
@@ -32,6 +34,7 @@ describe('create game command', () => {
 		given = [
 			{
 				event      : 'GameCreated',
+				gameId     : 2,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
@@ -39,6 +42,7 @@ describe('create game command', () => {
 		];
 		when = {
 			cmd        : 'CreateGame',
+			gameId     : 3,
 			gameName   : 'game2',
 			playerName : 'Player2',
 			timeStamp  : '2015.01.01T11:00:00'
@@ -46,6 +50,7 @@ describe('create game command', () => {
 		then = [
 			{
 				event      : 'GameCreated',
+				gameId     : 3,
 				gameName   : 'game2',
 				playerName : 'Player2',
 				timeStamp  : '2015.01.01T11:00:00'

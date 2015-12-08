@@ -11,12 +11,14 @@ describe('make move command', () => {
 		given = [
 			{
 				event      : 'GameCreated',
+				gameId     : 7,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
 			},
 			{
 				event      : 'GameJoined',
+				gameId     : 7,
 				gameName   : 'game1',
 				playerName : 'Player2',
 				timeStamp  : '2015.01.01T10:01:00'
@@ -29,6 +31,7 @@ describe('make move command', () => {
 		it('should allow player one to make first move', () => {
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 0,
 				row        : 0,
@@ -37,6 +40,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 0,
@@ -52,6 +56,7 @@ describe('make move command', () => {
 		it('should allow player two to make the second move', () => {
 			given.push({
 				event      : 'MoveMade',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 0,
 				row        : 0,
@@ -59,6 +64,7 @@ describe('make move command', () => {
 			});
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player2',
 				col        : 1,
 				row        : 1,
@@ -67,6 +73,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 1,
 					row        : 1,
@@ -85,6 +92,7 @@ describe('make move command', () => {
 
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player2',
 				col        : 2,
 				row        : 1,
@@ -93,6 +101,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'NotPlayersTurn',
+					gameId     : 7,
 					playerName : 'Player2',
 					timeStamp  : '2015.01.01T10:02:00'
 				}
@@ -106,6 +115,7 @@ describe('make move command', () => {
 		it('should not allow players to place a mark on an occupied tile', () => {
 			given.push({
 				event      : 'MoveMade',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 2,
 				row        : 1,
@@ -113,6 +123,7 @@ describe('make move command', () => {
 			});
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player2',
 				col        : 2,
 				row        : 1,
@@ -121,6 +132,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'TileOccupied',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 2,
 					row        : 1,
@@ -139,6 +151,7 @@ describe('make move command', () => {
 			const prevMoves = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 0,
@@ -146,6 +159,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 1,
 					row        : 0,
@@ -153,6 +167,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 2,
@@ -160,6 +175,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 1,
 					row        : 2,
@@ -169,6 +185,7 @@ describe('make move command', () => {
 			given = given.concat(prevMoves);
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 0,
 				row        : 1,
@@ -177,6 +194,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'GameOver',
+					gameId     : 7,
 					winnerName : 'Player1',
 					timeStamp  : '2015.01.01T11:05:00'
 				}
@@ -191,6 +209,7 @@ describe('make move command', () => {
 			const prevMoves = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 0,
@@ -198,6 +217,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 0,
 					row        : 1,
@@ -205,6 +225,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 2,
 					row        : 0,
@@ -212,6 +233,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 0,
 					row        : 2,
@@ -221,6 +243,7 @@ describe('make move command', () => {
 			given = given.concat(prevMoves);
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 1,
 				row        : 0,
@@ -229,6 +252,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'GameOver',
+					gameId     : 7,
 					winnerName : 'Player1',
 					timeStamp  : '2015.01.01T11:05:00'
 				}
@@ -243,6 +267,7 @@ describe('make move command', () => {
 			const prevMoves = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 0,
@@ -250,6 +275,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 0,
 					row        : 1,
@@ -257,6 +283,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 1,
 					row        : 1,
@@ -264,6 +291,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 0,
 					row        : 2,
@@ -273,6 +301,7 @@ describe('make move command', () => {
 			given = given.concat(prevMoves);
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 2,
 				row        : 2,
@@ -281,6 +310,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'GameOver',
+					gameId     : 7,
 					winnerName : 'Player1',
 					timeStamp  : '2015.01.01T11:05:00'
 				}
@@ -302,6 +332,7 @@ describe('make move command', () => {
 			const prevMoves = [
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 0,
@@ -309,6 +340,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 0,
 					row        : 2,
@@ -316,6 +348,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 0,
 					row        : 1,
@@ -323,6 +356,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 1,
 					row        : 0,
@@ -330,6 +364,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 1,
 					row        : 2,
@@ -337,6 +372,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 1,
 					row        : 1,
@@ -344,6 +380,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player1',
 					col        : 2,
 					row        : 0,
@@ -351,6 +388,7 @@ describe('make move command', () => {
 				},
 				{
 					event      : 'MoveMade',
+					gameId     : 7,
 					playerName : 'Player2',
 					col        : 2,
 					row        : 2,
@@ -360,6 +398,7 @@ describe('make move command', () => {
 			given = given.concat(prevMoves);
 			when = {
 				cmd        : 'MakeMove',
+				gameId     : 7,
 				playerName : 'Player1',
 				col        : 2,
 				row        : 1,
@@ -368,6 +407,7 @@ describe('make move command', () => {
 			then = [
 				{
 					event      : 'Draw',
+					gameId     : 7,
 					timeStamp  : '2015.01.01T11:09:00'
 				}
 			];

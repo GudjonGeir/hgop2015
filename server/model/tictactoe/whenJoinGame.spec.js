@@ -11,6 +11,7 @@ describe('join game command', () => {
 		given = [
 			{
 				event      : 'GameCreated',
+				gameId     : 4,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
@@ -18,6 +19,7 @@ describe('join game command', () => {
 		];
 		when = {
 			cmd        : 'JoinGame',
+			gameId     : 4,
 			gameName   : 'game1',
 			playerName : 'Player2',
 			timeStamp  : '2015.01.01T10:01:00'
@@ -25,12 +27,14 @@ describe('join game command', () => {
 		then = [
 			{
 				event      : 'GameCreated',
+				gameId     : 4,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
 			},
 			{
 				event      : 'GameJoined',
+				gameId     : 4,
 				gameName   : 'game1',
 				playerName : 'Player2',
 				timeStamp  : '2015.01.01T10:01:00'
@@ -46,6 +50,7 @@ describe('join game command', () => {
 		given = [];
 		when = {
 			cmd        : 'JoinGame',
+			gameId     : 5,
 			gameName   : 'game1',
 			playerName : 'Player1',
 			timeStamp  : '2015.01.01T20:00:00'
@@ -53,6 +58,7 @@ describe('join game command', () => {
 		then = [
 			{
 				event     : 'NonExistingGame',
+				gameId    : 5,
 				gameName  : 'game1',
 				timeStamp : '2015.01.01T20:00:00'
 			}
@@ -67,12 +73,14 @@ describe('join game command', () => {
 		given = [
 			{
 				event      : 'GameCreated',
+				gameId     : 6,
 				gameName   : 'game1',
 				playerName : 'Player1',
 				timeStamp  : '2015.01.01T10:00:00'
 			},
 			{
 				event      : 'GameJoined',
+				gameId     : 6,
 				gameName   : 'game1',
 				playerName : 'Player2',
 				timeStamp  : '2015.01.01T10:01:00'
@@ -80,6 +88,7 @@ describe('join game command', () => {
 		];
 		when = {
 			cmd        : 'JoinGame',
+			gameId     : 6,
 			gameName   : 'game1',
 			playerName : 'Player3',
 			timeStamp  : '2015.01.01T10:03:00'
@@ -87,6 +96,7 @@ describe('join game command', () => {
 		then = [
 			{
 				event     : 'GameFull',
+				gameId    : 6,
 				gameName  : 'game1',
 				timeStamp : '2015.01.01T10:03:00'
 			}
