@@ -83,6 +83,10 @@ function given(commandApi) {
 			expectations[expectations.length-1].gameName = name;
 			return givenApi;
 		},
+		withWinner: (winnerName) => {
+			expectations[expectations.length-1].winnerName = winnerName;
+			return givenApi;
+		},
 		and: (andCommandApi) => {
 			commands.push(andCommandApi.getCommand());
 			return givenApi;
@@ -116,42 +120,42 @@ describe('TEST ENV GET /api/gameHistory', () => {
 		acceptanceUrl.should.be.ok;
 	});
 
-	// it('should execute same test using old style', function (done) {
-	//
-	// 	var command = {
-	// 		cmd        : 'CreateGame',
-	// 		gameId     : 999,
-	// 		gameName   : 'TheFirstGame',
-	// 		playerName : 'Gulli',
-	// 		timeStamp  : '2015.01.01T10:00:00'
-	// 	};
-	//
-	// 	var req = request(acceptanceUrl);
-	// 	req
-	// 	.post('/api/createGame')
-	// 	.type('json')
-	// 	.send(command)
-	// 	.end(function (err, res) {
-	// 		if (err) return done(err);
-	// 		request(acceptanceUrl)
-	// 		.get('/api/gameHistory/999')
-	// 		.expect(200)
-	// 		.expect('Content-Type', /json/)
-	// 		.end(function (err, res) {
-	// 			if (err) return done(err);
-	// 			res.body.should.be.instanceof(Array);
-	// 			should(res.body).eql(
-	// 			[{
-	// 				event      : 'GameCreated',
-	// 				gameId     : 999,
-	// 				gameName   : 'TheFirstGame',
-	// 				playerName : 'Gulli',
-	// 				timeStamp  : '2015.01.01T10:00:00'
-	// 			}]);
-	// 			done();
-	// 		});
-	// 	});
-	// });
+	it('should execute same test using old style', function (done) {
+
+		var command = {
+			cmd        : 'CreateGame',
+			gameId     : 999,
+			gameName   : 'TheFirstGame',
+			playerName : 'Gulli',
+			timeStamp  : '2015.01.01T10:00:00'
+		};
+
+		var req = request(acceptanceUrl);
+		req
+		.post('/api/createGame')
+		.type('json')
+		.send(command)
+		.end(function (err, res) {
+			if (err) return done(err);
+			request(acceptanceUrl)
+			.get('/api/gameHistory/999')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function (err, res) {
+				if (err) return done(err);
+				res.body.should.be.instanceof(Array);
+				should(res.body).eql(
+				[{
+					event      : 'GameCreated',
+					gameId     : 999,
+					gameName   : 'TheFirstGame',
+					playerName : 'Gulli',
+					timeStamp  : '2015.01.01T10:00:00'
+				}]);
+				done();
+			});
+		});
+	});
 
 
 	it('Should execute fluid API test', (done) => {
@@ -159,7 +163,7 @@ describe('TEST ENV GET /api/gameHistory', () => {
 		.expect("GameCreated").withName("TheFirstGame").isOk(done);
 	});
 
-	it('Should play game until won or drawn', function (done) {
+	it('Should play game until drawn', function (done) {
 		given(user("YourUser").createsGame(2).named("DrawGame"))
 		.and(user("OtherUser").joinsGame(2).named("DrawGame"))
 		.and(user("YourUser").makesMove(0,0, 2))
@@ -172,5 +176,16 @@ describe('TEST ENV GET /api/gameHistory', () => {
 		.and(user("OtherUser").makesMove(2,2, 2))
 		.and(user("YourUser").makesMove(2,1, 2))
 		.expect("Draw").isOk(done);
+	});
+
+	it('Should play game until won', function (done) {
+		given(user("YourUser").createsGame(3).named("WinGame"))
+		.and(user("OtherUser").joinsGame(3).named("WinGame"))
+		.and(user("YourUser").makesMove(0,0, 3))
+		.and(user("OtherUser").makesMove(0,1, 3))
+		.and(user("YourUser").makesMove(1,1, 3))
+		.and(user("OtherUser").makesMove(0,2, 3))
+		.and(user("YourUser").makesMove(2,2, 3))
+		.expect("GameOver").withWinner("YourUser").isOk(done);
 	});
 });
