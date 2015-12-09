@@ -146,7 +146,7 @@ describe('TEST ENV GET /api/gameHistory', () => {
 				res.body.should.be.instanceof(Array);
 				should(res.body).eql(
 				[{
-					event      : 'GameCreated',
+					event      : '',
 					gameId     : 999,
 					gameName   : 'TheFirstGame',
 					playerName : 'Gulli',

@@ -309,7 +309,7 @@ describe('make move command', () => {
 			};
 			then = [
 				{
-					event      : '',
+					event      : 'GameOver',
 					gameId     : 7,
 					winnerName : 'Player1',
 					timeStamp  : '2015.01.01T11:05:00'
