@@ -26,13 +26,6 @@ describe('join game command', () => {
 		};
 		then = [
 			{
-				event      : 'GameCreated',
-				gameId     : 4,
-				gameName   : 'game1',
-				playerName : 'Player1',
-				timeStamp  : '2015.01.01T10:00:00'
-			},
-			{
 				event      : 'GameJoined',
 				gameId     : 4,
 				gameName   : 'game1',
