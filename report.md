@@ -14,3 +14,8 @@ bower er svipað og npm nema að það er eingöngu fyrir biðlara (client).
 ### Topology
 Við erum með tvær Vagrant vélar, önnur er fyrir þróunarumhverfi og jenkins, og hin fyrir prófunarumhverfi. Docker er container sem þessar vélar nota til þess að keyra upp verkefnið.
 Jenkins sér um continuous-deployment, s.s. fylgist með GitHub repo-inu og þegar breytingum er ýtt þangað sækir það breytingarnar og keyrir npm install til að fá server side dependencies, bower install til að fá client side dependencies og að lokum grunt til þess að byggja verkefnið og prófa það. Ef að prófin standast þá smíðar Jenkins dockerfile sem hann sendir síðan á Dockerhub og sendir síðan skilaboð á prófunar umhverfið að sæka hann og keyra upp.
+
+### Load/Capacity Test
+Eftir að hafa keyrt capacity prófið nokkrum sinnum var niðustaðan að það tekur um það bil 14 sekúndur að spila 1000 leiki. Ég setti efri mörkin á 20 sekúndur.
+
+Keyrir prófið samhliða eða í röð? Prófið keyrir samhliða út af því að nodejs er 'asynchronous', þ.e. þegar það á að gera I/O aðgerð þá setur það aðgerðina í bakgrunninn og heldur áfram keyrslu þangað til að það fær 'interrupt' að I/O aðgerðin hafi klárast. Í okkar tilviki þá fer hvert leikur í bakgrunnin þangað til að 'interrupt-ið' kemur. Í millitíðinni gæti annar leikur byrjað.
