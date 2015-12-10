@@ -9,3 +9,4 @@ dist
 junitResults/
 server-tests
 acceptance-tests
+load-tests
