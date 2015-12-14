@@ -8,5 +8,7 @@ dist
 
 junitResults/
 server-tests
+server-tests.txt
+server-tests.xml
 acceptance-tests
 load-tests
