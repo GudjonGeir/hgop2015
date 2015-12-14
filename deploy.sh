@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ -z "$1" ]; then echo "Empty parameter for testenv IP Address"; exit -1; fi
-if [ -z "$2" ]; then echo "Empty parameter for testenv PORT"; exit -1; fi
+if [ -z "$1" ]; then echo "Empty parameter for IP Address"; exit -1; fi
+if [ -z "$2" ]; then echo "Empty parameter for PORT"; exit -1; fi
 if [ -z "$3" ]; then echo "Empty parameter for last successful commit"; exit -1; fi
 
 echo Executing remote...
