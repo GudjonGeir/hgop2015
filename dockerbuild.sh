@@ -1,5 +1,6 @@
 #!/bin/bash
-
+export MOCHA_REPORTER=xunit
+export MOCHA_REPORT=server-tests.xml
 echo Cleaning...
 rm -rf ./dist
 
