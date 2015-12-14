@@ -6,5 +6,5 @@ if [ -z "$3" ]; then echo "Empty parameter for last successful commit"; exit -1;
 echo Executing remote...
 ssh vagrant@"$1" "docker stop tictactoe;
 				docker rm tictactoe;
-				docker pull ggjonsson/tictactoe"$2";
-				docker run -p 9000:"$2" --name tictactoe -d -e "NODE_ENV=production" ggjonsson/tictactoe"$2""
+				docker pull ggjonsson/tictactoe"$3";
+				docker run -p 9000:"$2" --name tictactoe -d -e "NODE_ENV=production" ggjonsson/tictactoe"$3""
