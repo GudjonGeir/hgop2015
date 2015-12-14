@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ -z "$1" ]; then echo "Empty parameter for testenv IP Address"; exit -1; fi
-	
+
 echo Executing remote...
 ssh vagrant@"$1" "docker stop tictactoe;
 							docker rm tictactoe;
