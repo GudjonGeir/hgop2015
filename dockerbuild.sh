@@ -7,8 +7,8 @@ rm -rf ./dist
 
 
 if [ -z "$GIT_COMMIT" ]; then
-  export GIT_COMMIT=$(git rev-parse HEAD)
-  export GIT_URL=$(git config --get remote.origin.url)
+	export GIT_COMMIT=$(git rev-parse HEAD)
+	export GIT_URL=$(git config --get remote.origin.url)
 fi
 
 # Remove .git from url in order to get https link to repo (assumes https url for GitHub)
@@ -57,8 +57,8 @@ if [[ $rc != 0 ]] ; then
 	exit $rc
 fi
 
-echo Pushing dockerfile:$GIT_COMMIT
-docker push ggjonsson/tictactoe
+echo Pushing dockerfile
+docker push ggjonsson/tictactoe:$GIT_COMMIT
 rc=$?
 if [[ $rc != 0 ]] ; then
 	echo "Docker push failed " $rc
