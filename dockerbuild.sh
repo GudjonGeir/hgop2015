@@ -3,6 +3,7 @@
 echo Exporting
 export MOCHA_REPORTER=xunit
 export MOCHA_REPORT=server-tests.xml
+rm server-tests.xml
 
 echo Cleaning...
 rm -rf ./dist
