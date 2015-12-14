@@ -1,4 +1,6 @@
 #!/bin/bash
+
+echo Exporting
 export MOCHA_REPORTER=xunit
 export MOCHA_REPORT=server-tests.xml
 
