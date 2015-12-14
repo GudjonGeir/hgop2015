@@ -7,4 +7,4 @@ echo Executing remote...
 ssh vagrant@"$1" "docker stop tictactoe;
 				docker rm tictactoe;
 				docker pull ggjonsson/tictactoe:"$3";
-				docker run -p 9000:"$2" --name tictactoe -d -e "NODE_ENV=production" ggjonsson/tictactoe:"$3""
+				docker run -p "$2":8080 --name tictactoe -d -e "NODE_ENV=production" ggjonsson/tictactoe:"$3""
