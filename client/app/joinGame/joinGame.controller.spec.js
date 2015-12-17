@@ -49,6 +49,7 @@ describe('Controller: JoinGameCtrl', function () {
 		httpBackend.expectPOST('/api/joinGame/', {
 			cmd: 'JoinGame',
 			gameId: '123',
+			gameName:'Game Number one',
 			playerName: 'Gummi',
 			timeStamp: '2014-12-02T11:29:29'
 		}).respond([

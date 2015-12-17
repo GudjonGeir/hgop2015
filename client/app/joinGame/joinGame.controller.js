@@ -18,6 +18,7 @@ angular.module('tictactoeApp')
 			var joinPostPromise = $http.post('/api/joinGame/', {
 					'cmd': 'JoinGame',
 					'gameId': $scope.gameState.gameId,
+					'gameName': $scope.gameState.gameName,
 					'playerName': $scope.playerName,
 					'timeStamp': '2014-12-02T11:29:29'
 				}
