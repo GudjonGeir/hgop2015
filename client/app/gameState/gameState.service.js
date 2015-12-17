@@ -36,7 +36,10 @@ angular.module('tictactoeApp')
 							var x = event.col, y = event.row;
 							gameState.board[x][y] = event.side;
 							gameState.nextTurn = 'GameOver';
-							gameState.winner = event.playerName;
+							gameState.winner = {
+								playerName: event.playerName,
+								side: event.side
+							};
 						},
 						'Draw': function (event, gameState) {
 							var x = event.col, y = event.row;

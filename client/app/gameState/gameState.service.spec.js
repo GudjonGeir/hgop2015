@@ -113,7 +113,7 @@ describe('Factory: TictacToeState', function () {
 		);
 
 		expect(gameState.nextTurn).toBe('GameOver');
-		expect(gameState.winner).toBe('Gummi');
+		expect(gameState.winner.playerName).toBe('Gummi');
 	});
 
 	it('Draw should set nextTurn to GameOver',function(){
