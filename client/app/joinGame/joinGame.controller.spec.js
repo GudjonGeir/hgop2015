@@ -37,22 +37,19 @@ describe('Controller: JoinGameCtrl', function () {
 	it('should ask to join game if game id already in scope, and assign me to O', function () {
 		httpBackend.expectGET('/api/gameHistory/123').respond( [{
 			event: 'GameCreated',
-			name:'Game Number one',
 			gameId : '123',
-			id : '6543'
+			gameName:'Game Number one',
+			playerName: 'Gulli',
+			timeStamp: '2015.01.01T10:00:00'
 		}]);
 		httpBackend.expectGET('app/createGame/createGame.html').respond('');
 
 		httpBackend.flush();
 
 		httpBackend.expectPOST('/api/joinGame/', {
-			id: '1234',
+			cmd: 'JoinGame',
 			gameId: '123',
-			comm: 'JoinGame',
-			user: {
-				userName: 'Gummi',
-				side: 'O'
-			},
+			playerName: 'Gummi',
 			timeStamp: '2014-12-02T11:29:29'
 		}).respond([
 				{event: 'GameJoined'}
@@ -60,7 +57,7 @@ describe('Controller: JoinGameCtrl', function () {
 		);
 
 
-		scope.userName = 'Gummi';
+		scope.playerName = 'Gummi';
 
 		scope.joinGame();
 
