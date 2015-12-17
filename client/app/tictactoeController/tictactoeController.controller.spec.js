@@ -88,7 +88,10 @@ describe('Controller: TictactoeControllerCtrl', function () {
 		scope.gameName = 'TheSecondGame';
 
 		location.search('gameSide', 'X');
-		scope.me = 'Gummi';
+		scope.me = {
+			playerName: 'Gummi',
+			side: 'O'
+		};
 		scope.gameState.gameId = '87687';
 
 		scope.makeMove({x:2, y:0});

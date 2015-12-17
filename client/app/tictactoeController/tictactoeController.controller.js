@@ -50,7 +50,7 @@ angular.module('tictactoeApp')
 			thenHandleEvents($http.post('/api/makeMove/', {
 					gameId: $scope.gameState.gameId,
 					cmd: 'MakeMove',
-					playerName: $scope.me,
+					playerName: $scope.me.playerName,
 					timeStamp: '2014-12-02T11:29:29',
 					col: coords.x,
 					row: coords.y
