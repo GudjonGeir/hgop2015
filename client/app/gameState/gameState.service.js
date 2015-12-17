@@ -23,8 +23,8 @@ angular.module('tictactoeApp')
 						},
 						'MoveMade': function (event, gameState) {
 							var x = event.col, y = event.row;
-							gameState.board[x][y] = gameState.nextTurn;
-							gameState.nextTurn = gameState.nextTurn === 'X' ? 'O' : 'X';
+							gameState.board[x][y] = event.side;
+							gameState.nextTurn = event.side === 'X' ? 'O' : 'X';
 						},
 						'GameOver': function (event, gameState) {
 							gameState.nextTurn = 'GameOver';
