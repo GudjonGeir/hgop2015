@@ -42,6 +42,7 @@ describe('make move command', () => {
 					event      : 'MoveMade',
 					gameId     : 7,
 					playerName : 'Player1',
+					side       : 'X',
 					col        : 0,
 					row        : 0,
 					timeStamp  : '2015.01.01T10:02:00'
@@ -58,6 +59,7 @@ describe('make move command', () => {
 				event      : 'MoveMade',
 				gameId     : 7,
 				playerName : 'Player1',
+				side       : 'X',
 				col        : 0,
 				row        : 0,
 				timeStamp  : '2015.01.01T10:02:00'
@@ -75,6 +77,7 @@ describe('make move command', () => {
 					event      : 'MoveMade',
 					gameId     : 7,
 					playerName : 'Player2',
+					side       : 'O',
 					col        : 1,
 					row        : 1,
 					timeStamp  : '2015.01.01T10:03:00'
@@ -134,6 +137,7 @@ describe('make move command', () => {
 					event      : 'TileOccupied',
 					gameId     : 7,
 					playerName : 'Player2',
+					side       : 'O',
 					col        : 2,
 					row        : 1,
 					timeStamp  : '2015.01.01T10:05:00'

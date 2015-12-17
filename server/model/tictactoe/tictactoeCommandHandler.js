@@ -113,9 +113,10 @@ module.exports = function tictactoeCommandHandler(events) {
 					event      : '',
 					gameId     : command.gameId,
 					playerName : command.playerName,
+					side       : playersMark,
 					col        : command.col,
 					row        : command.row,
-					timeStamp  : command.timeStamp
+					timeStamp  : command.timeStamp,
 				};
 				if (gameState.board[command.col][command.row] === '') {
 					gameState.board[command.col][command.row] = playersMark;
