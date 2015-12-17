@@ -11,8 +11,8 @@ angular.module('tictactoeApp')
 			});
 
 			postPromise.then(function(){
-
 				if (mySide() === 'X'){
+
 					$scope.me = $scope.gameState.creatingUser;
 					$scope.other = $scope.gameState.joiningUser;
 				} else {

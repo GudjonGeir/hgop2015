@@ -36,7 +36,7 @@ describe('Controller: TictactoeControllerCtrl', function () {
 
 	it('should init creator to side X', function () {
 		getHistory();
-		expect(scope.me).toBe('Creator');
+		expect(scope.me.playerName).toBe('Creator');
 	});
 
 	it('should init joiner to side O', function () {
@@ -45,7 +45,7 @@ describe('Controller: TictactoeControllerCtrl', function () {
 
 		getHistory();
 
-		expect(scope.me).toBe('Joiner');
+		expect(scope.me.playerName).toBe('Joiner');
 	});
 
 
@@ -78,6 +78,7 @@ describe('Controller: TictactoeControllerCtrl', function () {
 				event: 'MoveMade',
 				gameId: '87687',
 				timeStamp: '2014-12-02T11:29:29',
+				side: 'X',
 				col: 2,
 				row: 0
 			}

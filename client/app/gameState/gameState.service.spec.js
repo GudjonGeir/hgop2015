@@ -21,7 +21,7 @@ describe('Factory: TictacToeState', function () {
 			}]
 		);
 
-		expect(gameState.joiningUser).toBe('Gummi');
+		expect(gameState.joiningUser.playerName).toBe('Gummi');
 	});
 
 	it('Should store gameid and name from game created in game state.', function () {
@@ -36,7 +36,7 @@ describe('Factory: TictacToeState', function () {
 
 		expect(gameState.gameId).toBe('198299');
 		expect(gameState.gameName).toBe('TheFirstGame');
-		expect(gameState.creatingUser).toBe('Gummi');
+		expect(gameState.creatingUser.playerName).toBe('Gummi');
 	});
 
 	it('Should add moves 0,1 to game board', function () {
@@ -46,6 +46,7 @@ describe('Factory: TictacToeState', function () {
 				playerName: 'Gummi',
 				gameName: 'TheFirstGame',
 				timeStamp: '2014-12-02T11:29:29',
+				side: 'X',
 				col: 0,
 				row: 1,
 			}]
@@ -61,6 +62,7 @@ describe('Factory: TictacToeState', function () {
 				playerName: 'Gummi',
 				name: 'TheFirstGame',
 				timeStamp: '2014-12-02T11:29:29',
+				side: 'X',
 				col: 2,
 				row: 2
 			}]
@@ -76,6 +78,7 @@ describe('Factory: TictacToeState', function () {
 				playerName: 'Gummi',
 				name: 'TheFirstGame',
 				timeStamp: '2014-12-02T11:29:29',
+				side: 'X',
 				col: 2,
 				row: 2
 			}]
