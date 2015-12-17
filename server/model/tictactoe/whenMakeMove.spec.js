@@ -199,7 +199,10 @@ describe('make move command', () => {
 				{
 					event      : 'GameOver',
 					gameId     : 7,
-					winnerName : 'Player1',
+					playerName : 'Player1',
+					side       : 'X',
+					col        : 0,
+					row        : 1,
 					timeStamp  : '2015.01.01T11:05:00'
 				}
 			];
@@ -257,7 +260,10 @@ describe('make move command', () => {
 				{
 					event      : 'GameOver',
 					gameId     : 7,
-					winnerName : 'Player1',
+					playerName : 'Player1',
+					side       : 'X',
+					col        : 1,
+					row        : 0,
 					timeStamp  : '2015.01.01T11:05:00'
 				}
 			];
@@ -315,7 +321,10 @@ describe('make move command', () => {
 				{
 					event      : 'GameOver',
 					gameId     : 7,
-					winnerName : 'Player1',
+					playerName : 'Player1',
+					side       : 'X',
+					col        : 2,
+					row        : 2,
 					timeStamp  : '2015.01.01T11:05:00'
 				}
 			];
@@ -412,6 +421,10 @@ describe('make move command', () => {
 				{
 					event      : 'Draw',
 					gameId     : 7,
+					playerName : 'Player1',
+					side       : 'X',
+					col        : 2,
+					row        : 1,
 					timeStamp  : '2015.01.01T11:09:00'
 				}
 			];

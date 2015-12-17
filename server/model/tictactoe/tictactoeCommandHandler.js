@@ -122,26 +122,14 @@ module.exports = function tictactoeCommandHandler(events) {
 					gameState.board[command.col][command.row] = playersMark;
 					gameState.movesMade++;
 					if (checkForWin()) {
-						return [
-							{
-								event      : 'GameOver',
-								gameId     : command.gameId,
-								winnerName : command.playerName,
-								timeStamp  : command.timeStamp
-							}
-						];
+						retEvent.event = 'GameOver';
 					}
-					if (gameState.movesMade === 9) {
-						return [
-							{
-								event     : 'Draw',
-								gameId    : command.gameId,
-								timeStamp : command.timeStamp
-							}
-						];
+					else if (gameState.movesMade === 9) {
+						retEvent.event = 'Draw';
 					}
-
-					retEvent.event = 'MoveMade';
+					else {
+						retEvent.event = 'MoveMade';
+					}
 				} else {
 					retEvent.event = 'TileOccupied';
 				}

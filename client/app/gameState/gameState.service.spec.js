@@ -91,7 +91,7 @@ describe('Factory: TictacToeState', function () {
 		gameState.me = {side: 'X'};
 		gameState.mutate([{
 				event: 'GameCreated',
-				playerNameName: 'Gummi',
+				playerName: 'Gummi',
 				gameName: 'TheFirstGame',
 				timeStamp: '2014-12-02T11:29:29'
 			}]
@@ -104,7 +104,10 @@ describe('Factory: TictacToeState', function () {
 		gameState.me = {side: 'X'};
 		gameState.mutate([{
 				event: 'GameOver',
-				winnerName: 'Gummi',
+				playerName: 'Gummi',
+				side: 'X',
+				col: 1,
+				row: 2,
 				timeStamp: '2015.01.01T11:05:00'
 			}]
 		);
@@ -117,6 +120,9 @@ describe('Factory: TictacToeState', function () {
 		gameState.me = {side: 'X'};
 		gameState.mutate([{
 				event: 'Draw',
+				side: 'X',
+				col: 1,
+				row: 2,
 				timeStamp: '2015.01.01T11:09:00'
 			}]
 		);

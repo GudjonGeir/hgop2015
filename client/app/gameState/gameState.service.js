@@ -33,10 +33,14 @@ angular.module('tictactoeApp')
 							gameState.nextTurn = event.side === 'X' ? 'O' : 'X';
 						},
 						'GameOver': function (event, gameState) {
+							var x = event.col, y = event.row;
+							gameState.board[x][y] = event.side;
 							gameState.nextTurn = 'GameOver';
-							gameState.winner = event.winnerName;
+							gameState.winner = event.playerName;
 						},
 						'Draw': function (event, gameState) {
+							var x = event.col, y = event.row;
+							gameState.board[x][y] = event.side;
 							gameState.nextTurn = 'GameOver';
 							gameState.gameDraw = true;
 						}
