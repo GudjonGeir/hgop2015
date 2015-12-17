@@ -47,9 +47,9 @@ describe('Controller: CreateGameCtrl', function () {
 			]
 		);
 
-		scope.name = 'TheSecondGame';
+		scope.gameName = 'TheSecondGame';
 
-		scope.userName = 'Gummi';
+		scope.playerName = 'Gummi';
 
 		scope.createGame();
 		httpBackend.flush();
