@@ -84,7 +84,7 @@ function given(commandApi) {
 			return givenApi;
 		},
 		withWinner: (winnerName) => {
-			expectations[expectations.length-1].winnerName = winnerName;
+			expectations[expectations.length-1].playerName = winnerName;
 			return givenApi;
 		},
 		and: (andCommandApi) => {

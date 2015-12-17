@@ -1,0 +1,36 @@
+
+[0m[0m
+[0m  TEST ENV GET /api/gameHistory[0m
+[2K[0G  [32m  ✓[0m[90m Should have ACCEPTANCE_URL environment variable exported. [0m
+[90mPOST /api/createGame [32m200 [90m9ms - 119b[0m
+[90mGET /api/gameHistory/999 [32m200 [90m2ms - 119b[0m
+[2K[0G  [32m  ✓[0m[90m should execute same test using old style [0m[33m(57ms)[0m
+[90mPOST /api/createGame [32m200 [90m1ms - 120b[0m
+[90mGET /api/gameHistory/1 [32m200 [90m1ms - 120b[0m
+[2K[0G  [32m  ✓[0m[90m Should execute fluid API test [0m
+[90mPOST /api/createGame [32m200 [90m1ms - 116b[0m
+[90mPOST /api/joinGame [32m200 [90m0ms - 116b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m2ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 114b[0m
+[90mGET /api/gameHistory/2 [32m200 [90m6ms[0m
+[2K[0G  [32m  ✓[0m[90m Should play game until drawn [0m
+[90mPOST /api/createGame [32m200 [90m1ms - 115b[0m
+[90mPOST /api/joinGame [32m200 [90m1ms - 115b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m1ms - 118b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 119b[0m
+[90mPOST /api/makeMove [32m200 [90m0ms - 118b[0m
+[90mGET /api/gameHistory/3 [32m200 [90m1ms - 816b[0m
+[2K[0G  [32m  ✓[0m[90m Should play game until won [0m
+
+
+[92m [0m[32m 5 passing[0m[90m (124ms)[0m
+
