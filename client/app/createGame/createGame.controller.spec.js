@@ -31,24 +31,18 @@ describe('Controller: CreateGameCtrl', function () {
 
 	it('should post variables from scope for guid, name and userName and process resulting events, and assign me to X', function () {
 		httpBackend.expectPOST('/api/createGame/', {
-			id: '12345',
-			gameId: '98765',
-			comm: 'CreateGame',
-			user: {
-				userName: 'Gummi',
-				side: 'X'
-			},
-			name: 'TheSecondGame',
-			timeStamp: '2014-12-02T11:29:29'
+			cmd        : 'CreateGame',
+			gameId     : '12345',
+			gameName   : 'TheSecondGame',
+			playerName :  'Gummi',
+			timeStamp  : '2014-12-02T11:29:29'
 		}).respond([
 				{
-					id: '12345',
-					gameId: '98765',
 					event: 'GameCreated',
-					user: {
-						userName: 'Gummi',
-						side: 'X'
-					}
+					gameId: '12345',
+					gameName: 'TheSecondGame',
+					playerName: 'Gummi',
+					timeStamp: '2014-12-02T11:29:29'
 				}
 			]
 		);
@@ -60,7 +54,7 @@ describe('Controller: CreateGameCtrl', function () {
 		scope.createGame();
 		httpBackend.flush();
 
-		expect(location.search().gameId).toBe('98765');
+		expect(location.search().gameId).toBe('12345');
 		expect(location.search().gameSide).toBe('X');
 		expect(location.path()).toBe('/tictactoe');
 
